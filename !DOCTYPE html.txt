@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ข้อมูลพรรณไม้ - มหกรรมพืชสวนโลกอุดรธานี 2569</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #f4f7f5;
+      --card-bg: #ffffff;
+      --text-color: #1e293b;
+      --primary-color: #1b5e20;
+      --border-color: #cbd5e1;
+      --base-font-size: 18px;
+    }
+    body.high-contrast {
+      --bg-color: #000000;
+      --card-bg: #121212;
+      --text-color: #ffff00;
+      --primary-color: #ffff00;
+      --border-color: #ffff00;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Sarabun', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-size: var(--base-font-size);
+      line-height: 1.6;
+      padding: 16px;
+    }
+    .container { max-width: 600px; margin: 0 auto; }
+    .a11y-toolbar {
+      display: flex; justify-content: space-between; align-items: center;
+      background: var(--card-bg); padding: 10px 14px; border-radius: 12px;
+      border: 2px solid var(--border-color); margin-bottom: 16px;
+    }
+    .a11y-btn {
+      background: var(--bg-color); color: var(--text-color);
+      border: 2px solid var(--border-color); border-radius: 8px;
+      padding: 8px 14px; font-size: 16px; font-weight: 700; cursor: pointer;
+    }
+    .header-card {
+      background: var(--card-bg); border-radius: 16px; overflow: hidden;
+      border: 2px solid var(--border-color); margin-bottom: 16px;
+    }
+    .tree-banner {
+      background: linear-gradient(135deg, #1b5e20, #388e3c);
+      color: #ffffff; padding: 24px 20px; text-align: center;
+    }
+    body.high-contrast .tree-banner { background: #000; color: #ff0; border-bottom: 2px solid #ff0; }
+    .badge {
+      display: inline-block; background: rgba(255,255,255,0.2);
+      padding: 4px 12px; border-radius: 20px; font-size: 0.85em; margin-bottom: 8px;
+    }
+    .mode-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-bottom: 20px; }
+    .mode-btn {
+      display: flex; align-items: center; gap: 14px; width: 100%; padding: 16px 20px;
+      border-radius: 14px; border: 2px solid var(--border-color);
+      background: var(--card-bg); color: var(--text-color);
+      font-family: inherit; font-size: 1.05em; font-weight: 700; text-align: left; cursor: pointer;
+    }
+    .mode-btn.active { border-color: var(--primary-color); background-color: #e8f5e9; color: #1b5e20; }
+    body.high-contrast .mode-btn.active { background-color: #ffff00; color: #000000; }
+    .mode-icon { font-size: 1.8em; flex-shrink: 0; }
+    .mode-sub { display: block; font-size: 0.8em; font-weight: 400; opacity: 0.85; }
+    .content-panel {
+      display: none; background: var(--card-bg); padding: 22px;
+      border-radius: 16px; border: 2px solid var(--border-color); margin-bottom: 24px;
+    }
+    .content-panel.active { display: block; }
+    .panel-title {
+      font-size: 1.3em; color: var(--primary-color); margin-bottom: 12px;
+      border-bottom: 2px solid var(--border-color); padding-bottom: 8px;
+    }
+    audio { width: 100%; margin: 14px 0; height: 54px; }
+    .video-wrapper {
+      position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;
+      border-radius: 12px; margin-bottom: 16px; background: #000;
+    }
+    .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+    .quiz-box {
+      background: #fef9c3; color: #1e293b; padding: 16px;
+      border-radius: 12px; margin-top: 16px; border: 2px solid #eab308;
+    }
+    .quiz-options { display: flex; gap: 10px; margin-top: 10px; }
+    .quiz-btn {
+      flex: 1; padding: 12px; border-radius: 10px; border: 2px solid #ca8a04;
+      background: #ffffff; font-weight: 700; font-size: 1em; cursor: pointer;
+    }
+    .info-list { list-style: none; }
+    .info-list li { margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px dashed var(--border-color); }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="a11y-toolbar" role="region" aria-label="เครื่องมือช่วยการอ่าน">
+    <div>
+      <button class="a11y-btn" onclick="changeFontSize(-2)" aria-label="ลดขนาดตัวอักษร">ก-</button>
+      <button class="a11y-btn" onclick="changeFontSize(2)" aria-label="ขยายขนาดตัวอักษร">ก+</button>
+    </div>
+    <button class="a11y-btn" onclick="toggleContrast()" aria-label="สลับโหมดสีความคมชัดสูง">🌓 สีคมชัดสูง</button>
+  </div>
+
+  <header class="header-card">
+    <div class="tree-banner">
+      <span class="badge" id="tree-zone">กำลังโหลดข้อมูล...</span>
+      <h1 id="tree-name">-</h1>
+      <p style="font-style: italic; opacity: 0.9;" id="tree-sci">-</p>
+    </div>
+  </header>
+
+  <nav class="mode-grid" aria-label="เลือกรูปแบบการรับข้อมูล">
+    <button class="mode-btn active" onclick="selectMode('blind', this)" aria-pressed="true">
+      <span class="mode-icon" aria-hidden="true">🔊</span>
+      <div>ฟังเสียงบรรยายลักษณะต้นไม้<span class="mode-sub">สำหรับผู้พิการทางสายตา (Audio Description)</span></div>
+    </button>
+    <button class="mode-btn" onclick="selectMode('deaf', this)" aria-pressed="false">
+      <span class="mode-icon" aria-hidden="true">🤟</span>
+      <div>วิดีโอล่ามภาษามือ + คำบรรยาย<span class="mode-sub">สำหรับผู้พิการทางการได้ยิน (Sign Language)</span></div>
+    </button>
+    <button class="mode-btn" onclick="selectMode('kids', this)" aria-pressed="false">
+      <span class="mode-icon" aria-hidden="true">🧸</span>
+      <div>นิทานและเกมทายใจ<span class="mode-sub">สำหรับเด็กและเยาวชน (Kids Mode)</span></div>
+    </button>
+    <button class="mode-btn" onclick="selectMode('general', this)" aria-pressed="false">
+      <span class="mode-icon" aria-hidden="true">📖</span>
+      <div>ข้อมูลพฤกษศาสตร์และประโยชน์<span class="mode-sub">สำหรับบุคคลทั่วไปและผู้สูงอายุ</span></div>
+    </button>
+  </nav>
+
+  <!-- 1. ผู้พิการทางสายตา -->
+  <section id="panel-blind" class="content-panel active" aria-live="polite">
+    <h2 class="panel-title">🔊 เสียงบรรยายลักษณะทางกายภาพ</h2>
+    <!-- เครื่องเล่นไฟล์เสียง MP3 จริง -->
+    <audio id="audio-blind" controls preload="metadata" aria-label="ไฟล์เสียงบรรยายสำหรับผู้พิการทางสายตา">
+      <source id="src-audio-blind" src="" type="audio/mpeg">
+      เบราว์เซอร์ของคุณไม่รองรับการเล่นไฟล์เสียง
+    </audio>
+    <p id="text-blind"></p>
+  </section>
+
+  <!-- 2. ผู้พิการทางการได้ยิน -->
+  <section id="panel-deaf" class="content-panel" aria-live="polite">
+    <h2 class="panel-title">🤟 วิดีโอล่ามภาษามือไทย</h2>
+    <div class="video-wrapper">
+      <iframe id="iframe-deaf" src="" title="วิดีโอล่ามภาษามือ" allowfullscreen></iframe>
+    </div>
+    <p id="text-deaf"></p>
+  </section>
+
+  <!-- 3. เด็กและเยาวชน -->
+  <section id="panel-kids" class="content-panel" aria-live="polite">
+    <h2 class="panel-title">🧸 โหมดนิทานสำหรับเด็ก</h2>
+    <audio id="audio-kids" controls preload="metadata" aria-label="ไฟล์เสียงเล่านิทานสำหรับเด็ก">
+      <source id="src-audio-kids" src="" type="audio/mpeg">
+    </audio>
+    <p id="text-kids"></p>
+    <div class="quiz-box">
+      <p><strong>🎯 เกมทายใจ:</strong> <span id="quiz-question"></span></p>
+      <div class="quiz-options">
+        <button class="quiz-btn" id="quiz-opt-1" onclick="checkAnswer(0)"></button>
+        <button class="quiz-btn" id="quiz-opt-2" onclick="checkAnswer(1)"></button>
+      </div>
+      <p id="quiz-result" style="margin-top: 10px; font-weight: 700;"></p>
+    </div>
+  </section>
+
+  <!-- 4. บุคคลทั่วไป -->
+  <section id="panel-general" class="content-panel" aria-live="polite">
+    <h2 class="panel-title">📖 ข้อมูลพฤกษศาสตร์และประโยชน์</h2>
+    <ul class="info-list" id="list-general"></ul>
+  </section>
+</div>
+
+<script>
+  // ฐานข้อมูลต้นไม้ (ในการใช้งานจริง สามารถเปลี่ยนส่วนนี้เป็นการดึงข้อมูลจาก API หรือ Google Sheets JSON ได้)
+  const TREE_DATABASE = {
+    "001": {
+      zone: "ต้นไม้ประจำจังหวัดอุดรธานี",
+      name: "ต้นรัง (ต้นฮัง)",
+      sci: "Shorea siamensis Miq. | วงศ์ยางนา",
+      blindAudioUrl: "https://example.com/audio/001-blind.mp3", // ใส่ลิงก์ไฟล์ MP3 จริงที่นี่
+      blindText: "สวัสดีครับ คุณกำลังอยู่ตรงหน้า ต้นรัง หรือที่ชาวอีสานเรียกว่า ต้นฮัง ต้นไม้ประจำจังหวัดอุดรธานีครับ ลำต้นสูงตรง 15-20 เมตร เปลือกสีเทาปนน้ำตาลแตกเป็นร่องลึก ใบเป็นรูปไข่ขนาดใหญ่โคนใบเว้าคล้ายรูปหัวใจ ออกดอกสีเหลืองมีกลิ่นหอมช่วงเดือนมีนาคม-เมษายน ผลมี 5 ปีกหมุนติ้วลอยตามลมได้ครับ",
+      deafYoutubeEmbed: "https://www.youtube.com/embed/VIDEO_ID_001?cc_load_policy=1", // ใส่ลิงก์ Embed YouTube ล่ามภาษามือ
+      deafText: "สรุปใจความ: ต้นรัง (ต้นฮัง) เป็นไม้ยืนต้นขนาดใหญ่ เนื้อไม้แข็งแรงทนทาน นิยมใช้สร้างบ้านและทำหมอนรองรางรถไฟ เปลือกต้นใช้ต้มเป็นยาสมานแผลและแก้ท้องเสีย",
+      kidsAudioUrl: "https://example.com/audio/001-kids.mp3",
+      kidsText: "สวัสดีจ้าเด็กๆ! พี่ชื่อ 'พี่ฮัง' เป็นยักษ์ใจดีประจำจังหวัดอุดรธานี ความลับสุดเจ๋งของพี่คือลูกๆ ของพี่บินได้! เพราะผลของพี่มีปีกติดตัวมาตั้ง 5 ปีก เวลาลมพัดจะหมุนติ้วๆ เหมือนเฮลิคอปเตอร์จิ๋วเลยล่ะ!",
+      quizQuestion: "ใบของพี่ฮังมีรูปร่างคล้ายรูปอะไร?",
+      quizOptions: ["❤️ รูปหัวใจ", "⭐ รูปดาว"],
+      correctIndex: 0,
+      quizSuccessMsg: "🎉 ถูกต้องจ้า! โคนใบของพี่ฮังเว้าคล้ายรูปหัวใจ เก่งมากเลย!",
+      quizFailMsg: "ลองสังเกตดูใหม่อีกทีนะจ๊ะ โคนใบของพี่จะเว้าเข้าหากันคล้ายรูปหัวใจจ้า",
+      generalInfo: [
+        "<strong>ชื่อสามัญ:</strong> รัง (Siamese Sal) / ชื่อท้องถิ่นอีสาน: ฮัง",
+        "<strong>ถิ่นกำเนิด:</strong> เอเชียตะวันออกเฉียงใต้ พบมากในป่าเต็งรังภาคอีสาน",
+        "<strong>ลักษณะเด่น:</strong> ไม้ยืนต้นผลัดใบ สูง 15–20 เมตร ดอกสีเหลืองกลิ่นหอม ผลมีปีก 5 ปีก",
+        "<strong>ประโยชน์:</strong> เนื้อไม้แข็งแรงใช้ในการก่อสร้าง เปลือกไม้มีสารแทนนินใช้สมานแผล"
+      ]
+    },
+    "002": {
+      zone: "โซนไม้หายากจากอเมริกาใต้",
+      name: "ต้นนุ่นยักษ์ (เซบ้า)",
+      sci: "Ceiba speciosa | วงศ์ Malvaceae",
+      blindAudioUrl: "https://example.com/audio/002-blind.mp3",
+      blindText: "คุณกำลังยืนอยู่หน้า ต้นนุ่นยักษ์ หรือ ต้นเซบ้า จากทวีปอเมริกาใต้ โคนต้นแผ่ขยายเป็นพูพอนขนาดใหญ่ ลำต้นตรงกลางป่องออกคล้ายขวดน้ำเพื่อกักเก็บน้ำไว้ใช้ในฤดูแล้ง และมีหนามแหลมคล้ายกรวยคว่ำกระจายอยู่รอบลำต้นครับ",
+      deafYoutubeEmbed: "https://www.youtube.com/embed/VIDEO_ID_002?cc_load_policy=1",
+      deafText: "สรุปใจความ: ต้นนุ่นยักษ์จากอเมริกาใต้ มีจุดเด่นคือลำต้นป่องคล้ายขวดเพื่อเก็บน้ำ และมีหนามแหลมขนาดใหญ่รอบลำต้นเพื่อป้องกันสัตว์ปีนป่าย",
+      kidsAudioUrl: "https://example.com/audio/002-kids.mp3",
+      kidsText: "สวัสดีเจ้าตัวเล็ก! ฉันคือ 'คุณปู่นุ่นยักษ์' เดินทางมาจากป่าแอมะซอน ดูพุงป่องๆ ของปู่สิ ปู่เก็บน้ำเอาไว้ในพุงต่างหาก เวลาอากาศร้อนจะได้มีน้ำดื่ม แถมมีหนามแหลมๆ เหมือนชุดเกราะอัศวินด้วยนะ!",
+      quizQuestion: "คุณปู่นุ่นยักษ์เก็บอะไรไว้ในลำต้นที่ป่องออก?",
+      quizOptions: ["💧 เก็บน้ำไว้ดื่ม", "🍎 เก็บผลไม้"],
+      correctIndex: 0,
+      quizSuccessMsg: "🎉 เก่งมาก! ลำต้นป่องๆ ของปู่ใช้กักเก็บน้ำไว้ใช้ในหน้าแล้งจ้า",
+      quizFailMsg: "ยังไม่ถูกจ้า ลองนึกถึงเวลาอากาศร้อนแห้งแล้งดูสิ ปู่ต้องเก็บอะไรไว้ดื่มนะ?",
+      generalInfo: [
+        "<strong>ชื่อสามัญ:</strong> นุ่นยักษ์ / เซบ้า (Ceiba / Silk Floss Tree)",
+        "<strong>ถิ่นกำเนิด:</strong> ทวีปอเมริกากลางและอเมริกาใต้",
+        "<strong>ลักษณะเด่น:</strong> ลำต้นป่องคล้ายขวด (Bottle Tree) มีหนามแหลมขนาดใหญ่ตามลำต้น",
+        "<strong>ประโยชน์:</strong> ปลูกเป็นไม้ประดับให้ร่มเงา ปุยในผลใช้ยัดหมอนหรือทำฉนวนกันความร้อน"
+      ]
+    }
+  };
+
+  // อ่านค่า ?id= จาก URL (ถ้าไม่ระบุ ให้แสดงต้นที่ "001" เป็นค่าเริ่มต้น)
+  const urlParams = new URLSearchParams(window.location.search);
+  const treeId = urlParams.get('id') || "001";
+  const currentTree = TREE_DATABASE[treeId] || TREE_DATABASE["001"];
+
+  // นำข้อมูลไปแสดงผลบนหน้าเว็บ
+  window.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('tree-zone').innerText = currentTree.zone;
+    document.getElementById('tree-name').innerText = currentTree.name;
+    document.getElementById('tree-sci').innerText = currentTree.sci;
+
+    document.getElementById('src-audio-blind').src = currentTree.blindAudioUrl;
+    document.getElementById('audio-blind').load();
+    document.getElementById('text-blind').innerText = currentTree.blindText;
+
+    document.getElementById('iframe-deaf').src = currentTree.deafYoutubeEmbed;
+    document.getElementById('text-deaf').innerText = currentTree.deafText;
+
+    document.getElementById('src-audio-kids').src = currentTree.kidsAudioUrl;
+    document.getElementById('audio-kids').load();
+    document.getElementById('text-kids').innerText = currentTree.kidsText;
+
+    document.getElementById('quiz-question').innerText = currentTree.quizQuestion;
+    document.getElementById('quiz-opt-1').innerText = currentTree.quizOptions[0];
+    document.getElementById('quiz-opt-2').innerText = currentTree.quizOptions[1];
+
+    const listEl = document.getElementById('list-general');
+    currentTree.generalInfo.forEach(item => {
+      const li = document.createElement('li');
+      li.innerHTML = item;
+      listEl.appendChild(li);
+    });
+  });
+
+  function selectMode(modeName, btnElement) {
+    // หยุดเล่นเสียงทั้งหมดเมื่อเปลี่ยนโหมด
+    document.querySelectorAll('audio').forEach(a => a.pause());
+
+    document.querySelectorAll('.content-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.mode-btn').forEach(b => {
+      b.classList.remove('active');
+      b.setAttribute('aria-pressed', 'false');
+    });
+
+    document.getElementById('panel-' + modeName).classList.add('active');
+    btnElement.classList.add('active');
+    btnElement.setAttribute('aria-pressed', 'true');
+  }
+
+  let currentFontSize = 18;
+  function changeFontSize(step) {
+    currentFontSize = Math.min(28, Math.max(14, currentFontSize + step));
+    document.documentElement.style.setProperty('--base-font-size', currentFontSize + 'px');
+  }
+
+  function toggleContrast() {
+    document.body.classList.toggle('high-contrast');
+  }
+
+  function checkAnswer(selectedIndex) {
+    const resultEl = document.getElementById('quiz-result');
+    if (selectedIndex === currentTree.correctIndex) {
+      resultEl.style.color = '#15803d';
+      resultEl.innerText = currentTree.quizSuccessMsg;
+    } else {
+      resultEl.style.color = '#b91c1c';
+      resultEl.innerText = currentTree.quizFailMsg;
+    }
+  }
+</script>
+</body>
+</html>
